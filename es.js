@@ -359,7 +359,10 @@ function elasticSearchQuery(params) {
                     ranges.push(robj)
                 }
                 facet["range"] = { };
-                facet["range"][defn.field] = ranges
+                var r = {};
+                r.field=defn["field"]
+                r.ranges=ranges
+                facet["range"] = r
             } else if (defn.type === "geo_distance") {
                 facet["geo_distance"] = {}
                 facet["geo_distance"][defn["field"]] = [defn.lon, defn.lat]; // note that the order is lon/lat because of GeoJSON
